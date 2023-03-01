@@ -43,6 +43,8 @@ function addMovieFormHandler(event) {
   }
 
   console.log('visi laukai uzpildyti');
+
+  makeOneMovieHtmlEl(newMovieDetails);
 }
 
 function showAddMovieModal() {
@@ -61,6 +63,21 @@ function closeAddMovieModal() {
   els.backdropEl.classList.remove('visible');
 }
 
+/* 
+<li class="movie-element">
+  <div class="movie-element__image">
+    <img src="https://picsum.photos/id/1003/600/500" alt="element__image">
+  </div>
+  <div class="movie-element__info">
+    <h2>Title</h2>
+    <p>rating/5 stars</p>
+  </div>
+</li>
+*/
+function makeOneMovieHtmlEl(movieObj) {
+  // sukurti li elementa su visom reiksmem ir patalpinti i ul
+}
+
 // helper Functions
 
 function isThereEmptyValues(obj) {
@@ -72,4 +89,12 @@ function isThereEmptyValues(obj) {
   let isThereEmptyFields = valuesArr.some((str) => str === '');
   isThereEmptyFields = valuesArr.includes('');
   return isThereEmptyFields;
+}
+
+function crEl(el, parent = '', text = '', className = '') {
+  const newEl = document.createElement(el);
+  if (className) newEl.className = className;
+  if (text) newEl.innerHTML = text;
+  if (parent) parent.appendChild(newEl);
+  return newEl;
 }
