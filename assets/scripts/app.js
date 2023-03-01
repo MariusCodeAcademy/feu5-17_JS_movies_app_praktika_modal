@@ -96,6 +96,9 @@ function makeOneMovieHtmlEl(movieObj) {
   crEl('h2', movieInfoDiv, movieObj.title);
   // <p>rating/5 stars</p>
   crEl('p', movieInfoDiv, `${movieObj.rating}/5 stars`);
+  // button
+  const delBtn = crEl('button', movieInfoDiv, 'Delete', 'del-movie-btn');
+  // delBtn add event listener
   // talpinam dom
   els.movieListEl.append(liEl);
 }
