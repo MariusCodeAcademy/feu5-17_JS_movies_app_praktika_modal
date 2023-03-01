@@ -1,6 +1,21 @@
 'use strict';
 console.log('app.js file was loaded');
 
+const dummyMoviesData = [
+  {
+    title: 'Titanic',
+    imageUrl:
+      'https://images.bauerhosting.com/legacy/media/619d/7484/3ebe/47c9/9c9c/e22c/IMG_0290.JPG?q=80&w=900',
+    rating: 4,
+  },
+  {
+    title: 'Fight Club',
+    imageUrl:
+      'https://images.bauerhosting.com/legacy/media/619d/b191/5909/d009/314c/88c0/25%20Fight%20Club.jpg?q=80&w=900',
+    rating: 5,
+  },
+];
+
 // Taikomes
 
 const els = {
@@ -24,6 +39,9 @@ els.backdropEl.addEventListener('click', closeAddMovieModal);
 els.cancelModalBtn.addEventListener('click', closeAddMovieModal);
 // formos pateikimas
 els.addMovieForm.addEventListener('submit', addMovieFormHandler);
+
+// load dummy data
+dummyMoviesData.forEach(makeOneMovieHtmlEl);
 
 // Functions
 
@@ -99,8 +117,17 @@ function makeOneMovieHtmlEl(movieObj) {
   // button
   const delBtn = crEl('button', movieInfoDiv, 'Delete', 'del-movie-btn');
   // delBtn add event listener
+  delBtn.addEventListener('click', deleteMovie);
   // talpinam dom
   els.movieListEl.append(liEl);
+}
+
+function deleteMovie(event) {
+  console.log('deleteMovie', event.target);
+  const delBtn = event.target;
+  let liEl = delBtn.parentElement.parentElement;
+  liEl = delBtn.closest('li');
+  console.log('liEl ===', liEl);
 }
 
 // helper Functions
