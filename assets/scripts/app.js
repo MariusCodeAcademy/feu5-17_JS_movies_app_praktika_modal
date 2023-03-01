@@ -26,6 +26,8 @@ const els = {
   addMovieForm: document.getElementById('addMovieForm'),
   movieListEl: document.getElementById('movie-list'),
   noMoviesBlock: document.getElementById('entry-text'),
+  deleteModal: document.getElementById('delete-modal'),
+  deleteConfirmBtn: document.getElementById('deleteConfirmBtn'),
 };
 console.log('els ===', els);
 
@@ -85,6 +87,7 @@ function closeAddMovieModal() {
   // nuimti klases visible nuo backdrop ir modal
   // paslepti modala
   els.addMovieModal.classList.remove('visible');
+  els.deleteModal.classList.remove('visible');
   // paslepti backdrop
   els.backdropEl.classList.remove('visible');
 }
@@ -117,9 +120,18 @@ function makeOneMovieHtmlEl(movieObj) {
   // button
   const delBtn = crEl('button', movieInfoDiv, 'Delete', 'del-movie-btn');
   // delBtn add event listener
-  delBtn.addEventListener('click', deleteMovie);
+  delBtn.addEventListener('click', showDeleteConfirm);
   // talpinam dom
   els.movieListEl.append(liEl);
+}
+
+function showDeleteConfirm(event) {
+  els.deleteModal.classList.add('visible');
+  els.backdropEl.classList.add('visible');
+
+  els.deleteConfirmBtn.onclick = () => {
+    deleteMovie(event);
+  };
 }
 
 function deleteMovie(event) {
@@ -128,6 +140,7 @@ function deleteMovie(event) {
   let liEl = delBtn.parentElement.parentElement;
   liEl = delBtn.closest('li');
   console.log('liEl ===', liEl);
+  liEl.remove();
 }
 
 // helper Functions
@@ -149,4 +162,8 @@ function crEl(el, parent = '', text = '', className = '') {
   if (text) newEl.innerHTML = text;
   if (parent) parent.appendChild(newEl);
   return newEl;
+}
+
+function generateId() {
+  return Math.random().toFixed(8).slice(2);
 }
