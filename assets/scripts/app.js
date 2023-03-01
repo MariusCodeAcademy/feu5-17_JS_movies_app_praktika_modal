@@ -29,6 +29,20 @@ function addMovieFormHandler(event) {
   // sustabdyti nuo restart
   event.preventDefault();
   console.log('new movie handler');
+  const newMovieDetails = {
+    title: els.addMovieForm.elements.title.value.trim(),
+    imageUrl: els.addMovieForm.elements['image-url'].value.trim(),
+    rating: els.addMovieForm.elements.rating.value.trim(),
+  };
+  console.log('newMovieDetails ===', newMovieDetails);
+
+  // validacija
+  if (isThereEmptyValues(newMovieDetails)) {
+    console.warn('visi laukai butini');
+    return;
+  }
+
+  console.log('visi laukai uzpildyti');
 }
 
 function showAddMovieModal() {
@@ -45,4 +59,17 @@ function closeAddMovieModal() {
   els.addMovieModal.classList.remove('visible');
   // paslepti backdrop
   els.backdropEl.classList.remove('visible');
+}
+
+// helper Functions
+
+function isThereEmptyValues(obj) {
+  // mini validacija
+  // jei nors vienas laukas yra tuscias tai pranesti
+  // Object.values(obj) - grazina reiksmiu masyva
+  const valuesArr = Object.values(obj);
+  // ar valuesArr yra nors vienas tuscia stringas?
+  let isThereEmptyFields = valuesArr.some((str) => str === '');
+  isThereEmptyFields = valuesArr.includes('');
+  return isThereEmptyFields;
 }
