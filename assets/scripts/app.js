@@ -7,6 +7,7 @@ const els = {
   addMovieBtn: document.getElementById('addMovieBtn'),
   addMovieModal: document.getElementById('add-modal'),
   backdropEl: document.getElementById('backdrop'),
+  cancelModalBtn: document.getElementById('cancelModalBtn'),
 };
 console.log('els ===', els);
 
@@ -15,6 +16,9 @@ console.log('els ===', els);
 els.addMovieBtn.addEventListener('click', showAddMovieModal);
 
 // uzdeti paspaudimo pasiklausyma ant backdrop
+els.backdropEl.addEventListener('click', closeAddMovieModal);
+// padaryti kad paspaudus candel mygtuka modale uzsidarytu modalas
+els.cancelModalBtn.addEventListener('click', closeAddMovieModal);
 
 // Functions
 
@@ -28,4 +32,8 @@ function showAddMovieModal() {
 
 function closeAddMovieModal() {
   // nuimti klases visible nuo backdrop ir modal
+  // paslepti modala
+  els.addMovieModal.classList.remove('visible');
+  // paslepti backdrop
+  els.backdropEl.classList.remove('visible');
 }
