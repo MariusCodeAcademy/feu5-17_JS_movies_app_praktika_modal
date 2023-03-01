@@ -11,12 +11,21 @@ const els = {
 console.log('els ===', els);
 
 // Event listeners
+// paspaudimas ant Add Movie Btn
 els.addMovieBtn.addEventListener('click', showAddMovieModal);
+
+// uzdeti paspaudimo pasiklausyma ant backdrop
 
 // Functions
 
 function showAddMovieModal() {
   console.log('showAddMovieModal');
+  // parodyti modala
   els.addMovieModal.classList.add('visible');
+  // parodyti backdrop
   els.backdropEl.classList.add('visible');
+}
+
+function closeAddMovieModal() {
+  // nuimti klases visible nuo backdrop ir modal
 }
