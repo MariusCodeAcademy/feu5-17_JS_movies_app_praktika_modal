@@ -8,6 +8,7 @@ const els = {
   addMovieModal: document.getElementById('add-modal'),
   backdropEl: document.getElementById('backdrop'),
   cancelModalBtn: document.getElementById('cancelModalBtn'),
+  addMovieForm: document.getElementById('addMovieForm'),
 };
 console.log('els ===', els);
 
@@ -19,8 +20,16 @@ els.addMovieBtn.addEventListener('click', showAddMovieModal);
 els.backdropEl.addEventListener('click', closeAddMovieModal);
 // padaryti kad paspaudus candel mygtuka modale uzsidarytu modalas
 els.cancelModalBtn.addEventListener('click', closeAddMovieModal);
+// formos pateikimas
+els.addMovieForm.addEventListener('submit', addMovieFormHandler);
 
 // Functions
+
+function addMovieFormHandler(event) {
+  // sustabdyti nuo restart
+  event.preventDefault();
+  console.log('new movie handler');
+}
 
 function showAddMovieModal() {
   console.log('showAddMovieModal');
