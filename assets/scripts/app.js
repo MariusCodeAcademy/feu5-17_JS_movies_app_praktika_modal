@@ -120,13 +120,3 @@ function crEl(el, parent = '', text = '', className = '') {
   if (parent) parent.appendChild(newEl);
   return newEl;
 }
-
-// kai pridedam filma:
-// modala slepiam
-// formos laukus isvalom
-
-/* sita elementa slepiam display none
-<section id="entry-text" class="card">
-  <p>Your personal movie database!</p>
-</section>
-*/
