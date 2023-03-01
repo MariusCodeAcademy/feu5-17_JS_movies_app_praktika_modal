@@ -9,6 +9,8 @@ const els = {
   backdropEl: document.getElementById('backdrop'),
   cancelModalBtn: document.getElementById('cancelModalBtn'),
   addMovieForm: document.getElementById('addMovieForm'),
+  movieListEl: document.getElementById('movie-list'),
+  noMoviesBlock: document.getElementById('entry-text'),
 };
 console.log('els ===', els);
 
@@ -45,6 +47,12 @@ function addMovieFormHandler(event) {
   console.log('visi laukai uzpildyti');
 
   makeOneMovieHtmlEl(newMovieDetails);
+  // slepti modala
+  closeAddMovieModal();
+  // isvalom formos laukus
+  els.addMovieForm.reset();
+  // slepiam noMoviesBlock
+  els.noMoviesBlock.style.display = 'none';
 }
 
 function showAddMovieModal() {
@@ -76,6 +84,20 @@ function closeAddMovieModal() {
 */
 function makeOneMovieHtmlEl(movieObj) {
   // sukurti li elementa su visom reiksmem ir patalpinti i ul
+  const liEl = document.createElement('li');
+  liEl.className = 'movie-element';
+  const imgDiv = crEl('div', liEl, '', 'movie-element__image');
+  const imgEl = document.createElement('img');
+  imgEl.src = movieObj.imageUrl;
+  imgEl.alt = movieObj.title;
+  imgDiv.append(imgEl);
+  const movieInfoDiv = crEl('div', liEl, '', 'movie-element__info');
+  // <h2>Title</h2>
+  crEl('h2', movieInfoDiv, movieObj.title);
+  // <p>rating/5 stars</p>
+  crEl('p', movieInfoDiv, `${movieObj.rating}/5 stars`);
+  // talpinam dom
+  els.movieListEl.append(liEl);
 }
 
 // helper Functions
@@ -98,3 +120,13 @@ function crEl(el, parent = '', text = '', className = '') {
   if (parent) parent.appendChild(newEl);
   return newEl;
 }
+
+// kai pridedam filma:
+// modala slepiam
+// formos laukus isvalom
+
+/* sita elementa slepiam display none
+<section id="entry-text" class="card">
+  <p>Your personal movie database!</p>
+</section>
+*/
