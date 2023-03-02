@@ -118,11 +118,34 @@ function makeOneMovieHtmlEl(movieObj) {
   // <p>rating/5 stars</p>
   crEl('p', movieInfoDiv, `${movieObj.rating}/5 stars`);
   // button
-  const delBtn = crEl('button', movieInfoDiv, 'Delete', 'del-movie-btn');
+  const delBtn = crEl('button', movieInfoDiv, 'Delete', 'btn btn--danger');
   // delBtn add event listener
   delBtn.addEventListener('click', showDeleteConfirm);
+  const favBtn = crEl('button', movieInfoDiv, 'Make favorite', 'btn btn--passive');
+  favBtn.addEventListener('click', toggleMovieFavorite);
   // talpinam dom
   els.movieListEl.append(liEl);
+}
+
+function toggleMovieFavorite(event) {
+  console.log('toggleMovieFavorite ja iskviete', event.target);
+  // togglinti li klase
+  toggleLiFavoriteClass(event.target.closest('li'));
+  // toglinti mygtuko teksta
+  toggleBtnText(event.target);
+}
+
+function toggleLiFavoriteClass(liEl) {
+  liEl.classList.toggle('favMovie');
+}
+
+function toggleBtnText(btnEl) {
+  // jei siuo metu uzrasa sako 'Unfavorite movie'
+  if (btnEl.textContent === 'Unfavorite movie') {
+    btnEl.textContent = 'Make favorite again';
+  } else {
+    btnEl.textContent = 'Unfavorite movie';
+  }
 }
 
 function showDeleteConfirm(event) {

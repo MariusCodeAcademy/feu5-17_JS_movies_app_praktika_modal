@@ -250,3 +250,7 @@ input:focus {
     transform: translateY(0);
   }
 }
+
+.favMovie {
+  background-color: rgb(158, 249, 142);
+}
