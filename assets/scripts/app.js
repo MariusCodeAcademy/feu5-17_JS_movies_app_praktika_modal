@@ -2,6 +2,7 @@
 console.log('app.js file was loaded');
 
 // suimportuoti pagalbines funkcijas
+import { crEl } from './modules/helper.js';
 
 const dummyMoviesData = [
   {
@@ -179,16 +180,4 @@ function isThereEmptyValues(obj) {
   let isThereEmptyFields = valuesArr.some((str) => str === '');
   isThereEmptyFields = valuesArr.includes('');
   return isThereEmptyFields;
-}
-
-function crEl(el, parent = '', text = '', className = '') {
-  const newEl = document.createElement(el);
-  if (className) newEl.className = className;
-  if (text) newEl.innerHTML = text;
-  if (parent) parent.appendChild(newEl);
-  return newEl;
-}
-
-function generateId() {
-  return Math.random().toFixed(8).slice(2);
 }
