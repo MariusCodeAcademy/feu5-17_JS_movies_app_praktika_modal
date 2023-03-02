@@ -1,6 +1,8 @@
 'use strict';
 console.log('app.js file was loaded');
 
+// suimportuoti pagalbines funkcijas
+
 const dummyMoviesData = [
   {
     title: 'Titanic',
